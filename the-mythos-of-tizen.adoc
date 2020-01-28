@@ -1,0 +1,124 @@
+= The Mythos of Tizen
+:toc:
+:toc-placement!:
+
+_The Definitive Guide to Tizen Development for The Weather Group_
+
+'''
+
+*Turn back now!!!*
+
+Many a TV and developer have lost their minds while attempting to develop on Tizen. No mere mortal can overcome the challenges of this terrifying platform and many a Tizen TV hath fallen to insanity.
+
+Ever since the Samsung Gods hath abandoned us we have resorted to witchcraft and rituals spoken of by other Tizen developers. _**Forget all of that!!!**_ This is to be the definitive guide that shall not lead you astray. That is so long as the Samsung Gods hath not played a cruel trick on us and _"fixed"_ anything in any new updates.
+
+If you decide to continue -- against my warnings -- then there is not much I can do for you. The only assistance I can offer is this manuscript documenting my adventures in this forsaken land.
+
+'''
+
+toc::[]
+
+== TODO (Author's Notes)
+
+* Make sure the document is formatted correctly on GitHub (GitHub Flavored AsciiDoc)
+* It would be nice to have a post-push Git script that could update a Confluence page, unless that defeats the purpose of a Confluence page?
+
+== TV Developer Mode
+
+NOTE: Write how to get the TV into developer mode.
+
+For this you may require the TV wand with numbers scribed on it.
+
+TIP: The TV needs to have the IP address of the development computer. This can change when the computer is rebooted or if another developer uses the TV.
+
+
+== Certificates
+
+One of the biggest pains is how certificates are handled with Tizen TVs. Here are some key points:
+
+- TVs need to be assigned to a certificate **when the certificate is created!** They cannot be added to an existing certificate (I know)
+- Any TVs that are connected when creating a certificate will have their DUIDs automatically populated, but you should always double check that they have been added at that step in creating a certificate
+- The certificate needs to be a Samsung Certificate (the Tizen ones stopped working many moons ago and none of the elders know why)
+- The build arguments and environment variables for specifying a specific signing certificate are broken!
+  - The only way to select the certificate that will be ised to sign is by using `certificate-manager` and select the certificate you want to be the default and then click the checkmark on the upper right side of the window
+
+image:images/certificate-manager-set-default.png[Setting a Default Certificate]
+
+
+=== Shared Certificates
+
+Using our shared certificates is good practice because it means that developers will not have to remember to install their certificate on a TV every time they want to use a TV.
+
+TODO: Link to where the certificates are stored and instructions on adding them to `certificate-manager`.
+
+
+=== Generating a New Certificate
+
+IMPORTANT: You should not do this if the TV already has a Shared Certificate created for it!
+
+WARNING: You must use a Samsung Certificate for newer TVs.
+
+WARNING: You need to select "partner" in two (I think two?) places when creating the certificate or it may not work.
+
+
+=== Installing the Certificate on a TV
+
+If you are using the pre-made certificates then this step is not necessary. However if you have created a new certificate for a new TV this information may come in handy.
+
+
+== Building the Tizen App
+
+`./generate.rb -p tizen-nacl -m Developer -c [Release, Debug]`
+
+`./build.rb -b build/tizen-nacl/[Release, Debug]/ -c [Release, Debug]`
+
+
+== Installing the Tizen App on a TV
+
+Need to be connected tp the TV before the app can be installed. It is easiest to only connect to one TV at a time, that way you don't need to specify the target for the install command.
+
+I would recommend using the `device-manager` for connecting to the TVs.
+
+
+`tizen install -n build/tizen-nacl/[Release, Debug]/localnow-[Release, Debug].wgt`
+
+
+=== Why is the App not Installing?
+
+Probably certificate issue.
+
+- Make sure you are using the correct Cert (and that it is not a Tizen Cert)
+  - You can see what Cert was used to sign the package in the last few lines of output from the build command
+  - To change the default Cert see above
+- Make sure the TV is whitelisted on the Cert you are using
+- Make sure that the Cert is installed on the TV
+
+Probably too little space on TV. Release builds are smaller and Debug builds aren't useful without a debug TV. Some work needs to be done to get remote logging and debug level logs, though.
+
+
+=== Why the Hell is the App not Installing!?
+
+
+=== Why God!? Why!?
+
+If the memory is at 0.00mb and you have tried everything suggested here then I am sad to say the TV has passed on. RIP in Peace Samsung Tizen TV, we hardly knew thee. :'(
+
+
+== Debugging the Tizen App
+
+If you have made it this far then you are one of the lucky ones...
+
+Unfortunetly for you, debugging an app on Tizen is an arcaine art. I have never seen a Tizen Development TV with my own eyes, but many spread rumours of their existance. Even if they do exist the chances of finding one in the wild is unlikely.
+
+In order to hear what your TV has to say you need to teach it to use a remote debugging script.
+
+https://github.com/YOU-i-Labs/Commons/tree/master/sandbox/tizen_remote_console
+
+
+== Show Me the Magic (Commands)
+
+There is an ancient command passed down from Tizen developers before. It seems to work on some TVs and not on others -- perhaps newer TVs are immune to this incantation. It seems to cause the TV to forget the widget file that was last in its memory.
+
+Enough talk! The spell is as follows: `sdb shell "0 rmfile any_string"`
+
+WARNING: Be weary of special quotation marks when thou copy and pasteth this command as they can cause the spell to fail.
