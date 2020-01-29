@@ -166,7 +166,7 @@ To get to the Factory Menu:
 
 === Why God!? Why!?
 
-If the memory is at 0.00mb and you have tried everything suggested here then I am sad to say the TV has passed on. RIP in Peace Samsung Tizen TV, we hardly knew thee. :'(
+If the memory is at 0.00mb and you have tried everything suggested here then I am sad to say the TV has passed on. RIP in Peace Samsung Tizen TV, we hardly knew thee. :ghost: :cry: :poop: 
 
 
 == Debugging the Tizen App
