@@ -100,10 +100,68 @@ Probably certificate issue.
 - Make sure the TV is whitelisted on the Cert you are using
 - Make sure that the Cert is installed on the TV
 
-Probably too little space on TV. Release builds are smaller and Debug builds aren't useful without a debug TV. Some work needs to be done to get remote logging and debug level logs, though.
-
 
 === Why the Hell is the App not Installing!?
+
+Error 116 usually means there is too little space on TV to install the widget.
+
+TIP: Release builds are smaller than Debug builds. Debug builds also aren't useful without a debug TV. Although, some work needs to be done to get remote logging and debug level logs.
+
+
+==== Clearing Memory on the TV
+
+The best bet for clearing memory on the TV is to do a factory reset. There are several different types of "reset" available and they will be described later in this chapter.
+
+When reseting remember to do the following:
+
+===== Terms and Conditions Screen
+
+Only accept the first option in the Terms and Conditions seems to stop some built in widgets from being installed.
+
+
+===== Auto Update
+
+In the App -> Settings (Gear Icon) menu disable auto updates.
+
+
+===== Change Location
+
+During the reset you will see a Terms and Conditions screen.
+
+At this screen press the following on an IR remote:
+
+`FF, 2, 8, 9, RW`
+
+Select a country such as Cayman Islands, Cuba, or Zimbabwe.
+
+
+==== Factory Reset?
+
+
+==== Reset Smarthub?
+
+
+==== Reset?
+
+
+==== Start Setup?
+
+
+==== Other Factory Reset? (From Factory Menu)
+
+There is a hidden Factory Reset option in the Factory Menu on the TV.
+To get to the Factory Menu:
+
+. Put the tv to sleep by pressing the power button
+. Wait 5 seconds
+. On the IR remote press the following `Mute, 1, 8, 2, Power`
+. If the TV displays the Samsung Smart TV logo then you likely entered the code correctly
+. Wait for the TV to start and a black and blue menu to appear in the top left of the screen
+. Select _Options_
+. Select _Factory Rest_
+. The TV will turn off
+. Press the power button to turn the TV back on
+
 
 
 === Why God!? Why!?
