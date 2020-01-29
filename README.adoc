@@ -1,1 +1,1 @@
-= Tizen Guide
+include::the-mythos-of-tizen.adoc[]
