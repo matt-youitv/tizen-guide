@@ -1,8 +1,11 @@
 = Certificates
+ifndef::imagesdir[]
+:imagesdir: images/
+endif::[]
 ifdef::env-github[]
 :toc:
 :toc-placement!:
-
+// This line was intentionally left blank
 toc::[]
 endif::[]
 
@@ -15,7 +18,7 @@ One of the biggest pains is how certificates are handled with Tizen TVs. Here ar
 - The build arguments and environment variables for specifying a specific signing certificate are broken!
   - The only way to select the certificate that will be ised to sign is by using `certificate-manager` and select the certificate you want to be the default and then click the checkmark on the upper right side of the window
 
-image:images/certificate-manager-set-default.png[Setting a Default Certificate]
+image:certificate-manager-set-default.png[Setting a Default Certificate]
 
 
 == Shared Certificates

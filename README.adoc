@@ -30,7 +30,7 @@ link:https://rubygems.org/gems/asciidoctor[The official guide for installing Asc
 
 HTML backend is supported out of the box! Just run this command:
 
-`asciidoctor <adoc-file>`
+`asciidoctor index.adoc`
 
 === PDF
 
@@ -38,7 +38,7 @@ To build PDFs you will need to link:https://rubygems.org/gems/asciidoctor-pdf[in
 
 Once that is installed simply run this command:
 
-`asciidoctor-pdf <adoc-file>`
+`asciidoctor-pdf index.adoc`
 
 
 == GitHub

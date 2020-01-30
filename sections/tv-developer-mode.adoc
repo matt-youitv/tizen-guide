@@ -1,8 +1,11 @@
 = TV Developer Mode
+ifndef::imagesdir[]
+:imagesdir: images/
+endif::[]
 ifdef::env-github[]
 :toc:
 :toc-placement!:
-
+// This line was intentionally left blank
 toc::[]
 endif::[]
 

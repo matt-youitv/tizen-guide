@@ -37,16 +37,18 @@ If you decide to continue -- against my warnings -- then there is not much I can
 ifdef::env-github[]
 // Manually link to all the sub-sections
 .Table of Contents
-- <<tv-developer-mode#,TV Developer Mode>>
-- <<certificates#,Certificates>>
+- <<sections/tv-developer-mode#,TV Developer Mode>>
+- <<sections/certificates#,Certificates>>
 endif::[]
 
 
 
 ifndef::env-github[]
+:imagesdir: sections/images/
+
 toc::[]
 
 // Manually include all the sub-sections
-include::tv-developer-mode.adoc[leveloffset=+1]
-include::certificates.adoc[leveloffset=+1]
+include::sections/tv-developer-mode.adoc[leveloffset=+1]
+include::sections/certificates.adoc[leveloffset=+1]
 endif::[]
