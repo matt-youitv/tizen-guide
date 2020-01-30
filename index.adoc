@@ -13,7 +13,7 @@ _The Definitive Guide to Tizen Development for The Weather Group_
 
 '''
 
-*Turn back now!!!*
+_**Turn back now!!!**_
 
 Many a TV and developer have lost their minds while attempting to develop on Tizen. No mere mortal can overcome the challenges of this terrifying platform and many a Tizen TV hath fallen to insanity.
 
