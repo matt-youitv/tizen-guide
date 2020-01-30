@@ -15,8 +15,6 @@ endif::[]
 ifndef::env-github[]
 :icons: font
 endif::[]
-:toc:
-:toc-placement!:
 
 _The Definitive Guide to Tizen Development for The Weather Group_
 

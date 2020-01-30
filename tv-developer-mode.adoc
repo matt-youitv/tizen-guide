@@ -2,6 +2,7 @@
 ifdef::env-github[]
 :toc:
 :toc-placement!:
+
 toc::[]
 endif::[]
 
