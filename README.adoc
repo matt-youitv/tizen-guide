@@ -13,8 +13,6 @@ endif::[]
 :toc-placement!:
 
 
-'''
-
 These documents were written using AsciiDoctor because it is an advanced markup language that is supported on GitHub!
 
 '''
