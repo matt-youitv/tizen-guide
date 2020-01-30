@@ -1,1 +1,73 @@
-include::the-mythos-of-tizen.adoc[]
+= README
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+ifndef::env-github[]
+:icons: font
+endif::[]
+:toc:
+:toc-placement!:
+
+
+'''
+
+These documents were written using AsciiDoctor because it is an advanced markup language that is supported on GitHub!
+
+'''
+
+
+toc::[]
+
+== Install AsciiDoctor
+
+link:https://rubygems.org/gems/asciidoctor[The official guide for installing AsciiDoctor] is pretty straight forward.
+
+
+== Building the Docs
+
+
+=== HTML
+
+HTML backend is supported out of the box! Just run this command:
+
+`asciidoctor <adoc-file>`
+
+
+=== PDF
+
+To build PDFs you will need to link:https://rubygems.org/gems/asciidoctor-pdf[install this extension.]
+
+Once that is installed simply run this command:
+
+`asciidoctor-pdf <adoc-file>`
+
+
+== GitHub
+
+GitHub seems to do a pretty good job of rendering AsciiDoctor files.
+
+The only incompatibility I have come across so far is that GitHub does not support the `include::<adoc-file>[]` directive. __This seems to be for security reasons.__
+
+
+== Other Stuff
+
+
+=== Atom Plugin
+
+The official plugin pack for the Atom text editor is available link:https://atom.io/packages/asciidoc-assistant[here].
+
+
+=== VS Code
+
+A official__*__ plugin for VS Code is available link:https://marketplace.visualstudio.com/items?itemName=joaompinto.asciidoctor-vscode[here].
+
+__* The repo does seem to hosted on the link:https://github.com/asciidoctor/asciidoctor-vscode[AsciiDoctor GitHub Account].__
+
+
+=== Other Plugins
+
+A list of other plugins is available link:https://asciidoctor.org/docs/editing-asciidoc-with-live-preview/[here].

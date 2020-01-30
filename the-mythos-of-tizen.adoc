@@ -174,7 +174,7 @@ ifdef::env-github[]
 :ghost: :cry: :poop:
 endif::[]
 ifndef::env-github[]
-:'(
+&#128123; &#128546; &#128169;
 endif::[]
 
 == Debugging the Tizen App
