@@ -15,10 +15,9 @@ endif::[]
 
 These documents were written using AsciiDoctor because it is an advanced markup language that is supported on GitHub!
 
-'''
-
 
 toc::[]
+
 
 == Install AsciiDoctor
 
@@ -27,13 +26,11 @@ link:https://rubygems.org/gems/asciidoctor[The official guide for installing Asc
 
 == Building the Docs
 
-
 === HTML
 
 HTML backend is supported out of the box! Just run this command:
 
 `asciidoctor <adoc-file>`
-
 
 === PDF
 
@@ -51,13 +48,11 @@ GitHub seems to do a pretty good job of rendering AsciiDoctor files.
 The only incompatibility I have come across so far is that GitHub does not support the `include::<adoc-file>[]` directive. __This seems to be for security reasons.__
 
 
-== Other Stuff
-
+== Text Editor Plugins
 
 === Atom Plugin
 
 The official plugin pack for the Atom text editor is available link:https://atom.io/packages/asciidoc-assistant[here].
-
 
 === VS Code Plugin
 
@@ -65,7 +60,12 @@ A official__*__ plugin for VS Code is available link:https://marketplace.visuals
 
 __* The repo does seem to hosted on the link:https://github.com/asciidoctor/asciidoctor-vscode[AsciiDoctor GitHub Account].__
 
-
 === Other Plugins
 
 A list of other plugins is available link:https://asciidoctor.org/docs/editing-asciidoc-with-live-preview/[here].
+
+
+== AsciiDoctor References
+
+* link:https://asciidoctor.org/docs/user-manual/[The AsciiDoctor User Manual]
+** link:https://asciidoctor.org/docs/user-manual/#navigating-between-source-files[Linking to Other Documents in GitHub]

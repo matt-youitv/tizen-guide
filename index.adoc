@@ -1,0 +1,47 @@
+////
+This file will determine if the environment is GitHub or not.
+- If it is on Github it will show links to the sub-sections that will be manually updated
+- If it is NOT on Github it will just include `index-pdf.adoc`
+////
+
+= The Mythos of Tizen
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+ifndef::env-github[]
+:icons: font
+endif::[]
+:toc:
+:toc-placement!:
+
+_The Definitive Guide to Tizen Development for The Weather Group_
+
+'''
+
+*Turn back now!!!*
+
+Many a TV and developer have lost their minds while attempting to develop on Tizen. No mere mortal can overcome the challenges of this terrifying platform and many a Tizen TV hath fallen to insanity.
+
+Ever since the Samsung Gods hath abandoned us we have resorted to witchcraft and rituals spoken of by other Tizen developers. _**Forget all of that!!!**_ This is to be the definitive guide that shall not lead you astray. That is so long as the Samsung Gods hath not played a cruel trick on us and _"fixed"_ anything in any new updates.
+
+If you decide to continue -- against my warnings -- then there is not much I can do for you. The only assistance I can offer is this manuscript documenting my adventures in this forsaken land.
+
+'''
+
+
+
+ifdef::env-github[]
+// Manually link to all the sub-sections
+// <<README#,README>>
+<<the-mythos-of-tizen#,Main Page>>
+endif::[]
+
+
+
+ifndef::env-github[]
+include::index-pdf.adoc[]
+endif::[]
