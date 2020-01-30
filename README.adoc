@@ -59,7 +59,7 @@ The only incompatibility I have come across so far is that GitHub does not suppo
 The official plugin pack for the Atom text editor is available link:https://atom.io/packages/asciidoc-assistant[here].
 
 
-=== VS Code
+=== VS Code Plugin
 
 A official__*__ plugin for VS Code is available link:https://marketplace.visualstudio.com/items?itemName=joaompinto.asciidoctor-vscode[here].
 
