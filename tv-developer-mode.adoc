@@ -1,0 +1,13 @@
+= TV Developer Mode
+
+
+ifdef::env-github[]
+toc::[]
+endif::[]
+
+
+NOTE: Write how to get the TV into developer mode.
+
+For this you may require the TV wand with numbers scribed on it.
+
+TIP: The TV needs to have the IP address of the development computer. This can change when the computer is rebooted or if another developer uses the TV.

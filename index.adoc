@@ -36,12 +36,16 @@ If you decide to continue -- against my warnings -- then there is not much I can
 
 ifdef::env-github[]
 // Manually link to all the sub-sections
-// <<README#,README>>
-<<the-mythos-of-tizen#,Main Page>>
+<<tv-developer-mode#,TV Developer Mode>>
+<<certificates#,Certificates>>
 endif::[]
 
 
 
 ifndef::env-github[]
-include::index-pdf.adoc[]
+toc::[]
+
+// Manually include all the sub-sections
+include::tv-developer-mode.adoc[leveloffset=+1]
+include::certificates.adoc[leveloffset=+1]
 endif::[]
