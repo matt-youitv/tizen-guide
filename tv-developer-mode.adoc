@@ -1,7 +1,7 @@
 = TV Developer Mode
-
-
 ifdef::env-github[]
+:toc:
+:toc-placement!:
 toc::[]
 endif::[]
 

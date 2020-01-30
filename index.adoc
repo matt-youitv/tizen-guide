@@ -1,7 +1,7 @@
 ////
 This file will determine if the environment is GitHub or not.
 - If it is on Github it will show links to the sub-sections that will be manually updated
-- If it is NOT on Github it will just include `index-pdf.adoc`
+- If it is NOT on Github it will just include each sub-section
 ////
 
 = The Mythos of Tizen
