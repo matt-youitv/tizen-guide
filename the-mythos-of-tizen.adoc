@@ -6,6 +6,9 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
+ifndef::env-github[]
+:icons: font
+endif::[]
 :toc:
 :toc-placement!:
 
@@ -166,8 +169,13 @@ To get to the Factory Menu:
 
 === Why God!? Why!?
 
-If the memory is at 0.00mb and you have tried everything suggested here then I am sad to say the TV has passed on. RIP in Peace Samsung Tizen TV, we hardly knew thee. :ghost: :cry: :poop: 
-
+If the memory is at 0.00mb and you have tried everything suggested here then I am sad to say the TV has passed on. RIP in Peace Samsung Tizen TV, we hardly knew thee.
+ifdef::env-github[]
+:ghost: :cry: :poop:
+endif::[]
+ifndef::env-github[]
+:'(
+endif::[]
 
 == Debugging the Tizen App
 
