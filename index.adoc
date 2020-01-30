@@ -36,8 +36,8 @@ If you decide to continue -- against my warnings -- then there is not much I can
 
 ifdef::env-github[]
 // Manually link to all the sub-sections
-<<tv-developer-mode#,TV Developer Mode>>
-<<certificates#,Certificates>>
+* <<tv-developer-mode#,TV Developer Mode>>
+* <<certificates#,Certificates>>
 endif::[]
 
 
