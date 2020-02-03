@@ -45,9 +45,9 @@ WARNING: The build arguments and environment variables for specifying a specific
 
 To set a default certificate follow:
 
-* Open _Certificate Manager_
-* Highlight the certificate you want to set as default
-* Click the _checkmark_ button (on the upper right side of the window)
+. Open _Certificate Manager_
+. Highlight the certificate you want to set as default
+. Click the _Checkmark_ button (on the upper right side of the window)
 
 NOTE: The little blue checkmark to the left of a certificate's name shows which one is the default.
 
@@ -70,11 +70,11 @@ WARNING: You need to select "partner" in two (I think two?) places when creating
 
 If you are using the pre-made certificates then this step is likely not necessary. However if you have created a new certificate for a new TV this information may come in handy.
 
-* Make sure your default certificate is set to the correct certificate (see guide <<#setting-the-default-certificate,here>>)
-* Open _Device Manager_
-* Connect to the TV (see guide <<#connect-development-computer, here>>)
-* Right click the TV in the list of connected devices
-* Click _Permit to install applications_
+. Make sure your default certificate is set to the correct certificate (see guide <<#setting-the-default-certificate,here>>)
+. Open _Device Manager_
+. Connect to the TV (see guide <<#connect-development-computer, here>>)
+. Right click the TV in the list of connected devices
+. Click _Permit to install applications_
 
 
 
@@ -82,23 +82,22 @@ If you are using the pre-made certificates then this step is likely not necessar
 
 There are two main steps to connecting to a Tizen TV.
 
-1. The TV must be pointing to the development computer's IP (see <<#enabling-developer-mode,Enabling Developer Mode>>)
-2. The development computer needs to actually connect to the TV (see <<#connecting-development-computer-to-pc, Connecting Development Computer to TV>>)
+. The TV must be pointing to the development computer's IP (see <<#enabling-developer-mode,Enabling Developer Mode>>)
+. The development computer needs to actually connect to the TV (see <<#connecting-development-computer-to-pc, Connecting Development Computer to TV>>)
 
 
 === Enabling Developer Mode
 
+IMPORTANT: You will need an IR remote for this!
+
 To enable developer mode on the TV follow these steps:
 
-- Press the _Home_ button on the remote
-- Go to the _Apps_ screen on the TV
-- Press _1, 2, 3, 4, 5, 6_
-
-NOTE: You will need a keyboard or IR remote for this step.
-
-- Change _Development Mode_ to _On_
-- Enter the IP address of the development computer
-- Restart the TV by holding the _Power_ button for 3 seconds
+. Press the _Home_ button on the remote
+. Go to the _Apps_ screen on the TV
+. Press _1, 2, 3, 4, 5, 6_
+. Change _Development Mode_ to _On_
+. Enter the IP address of the development computer
+. Restart the TV by holding the _Power_ button for 3 seconds
 
 WARNING: The IP address of the TV and the development computer will likely change when they are rebooted!
 
@@ -109,22 +108,22 @@ WARNING: The IP address of the TV and the development computer will likely chang
 
 You will need to connect to the TV with its IP address. To get the TV's IP Address:
 
-* Press the _Home_ button
-* Navigate to _Settings_ (the Gear icon hidden in the Hamburger menu)
-* Navigate to _General_
-* Navigate to _Network_
-* Navigate to _Network Status_
-* Wait for the network test to finish
-* Navigate to _IP Settings_
+. Press the _Home_ button
+. Navigate to _Settings_ (the Gear icon hidden in the Hamburger menu)
+. Navigate to _General_
+. Navigate to _Network_
+. Navigate to _Network Status_
+. Wait for the network test to finish
+. Navigate to _IP Settings_
 
 ==== Development Computer Connection
 
-* Open up _Device Manager_ (this was installed along with Tizen Studio)
-* Click the _Remote Device Manager_ button (phone connected to laptop logo on the upper right side of the window)
-* You can either:
-** Click _Scan Devices_ and look for the IP of your TV
-** Or click _Add Devices_ and enter the IP you got in the previous section
-* Click the toggle button under _Connection_ on the TV you are using
+. Open up _Device Manager_ (this was installed along with Tizen Studio)
+. Click the _Remote Device Manager_ button (phone connected to laptop logo on the upper right side of the window)
+. You can either:
+.. Click _Scan Devices_ and look for the IP of your TV
+.. Or click _Add Devices_ and enter the IP you got in the previous section
+. Click the toggle button under _Connection_ on the TV you are using
 
 
 === Troubleshooting Connection
@@ -208,24 +207,22 @@ This can potentially help with maximizing built-in storage though! Tizen TVs lik
 
 Tizen TVs like to automatically download widgets and update which quickly fill the TVs built in memory. One was to avoid this is by disabling _Auto Update_.
 
-* Press the _Home_ button on the remote
-* Navigate to the _Apps_ menu
-* Navigate to the _Settings_ (the gear icon at the top right of the screen)
-* Toggle the _Auto Update_ button (near the top right of the screen)
+. Press the _Home_ button on the remote
+. Navigate to the _Apps_ menu
+. Navigate to the _Settings_ (the gear icon at the top right of the screen)
+. Toggle the _Auto Update_ button (near the top right of the screen)
 
 
 === Change Location
 
 Another method for avoiding filling up the TV's storage is to choose a location that does not have any automatically installing widget.
 
-* Do a factory reset (see <<#resetting-the-tv,Resetting the TV>>)
-* At the Terms and Conditions screen enter the following remote control
+IMPORTANT: You will need an IR remote for this!
 
-`FF, 2, 8, 9, RW`
-
-IMPORTANT: You will need an IR remote to enter the code!
-
-* Select a country such as Cayman Islands, Cuba, or Zimbabwe
+. Do a factory reset (see <<#resetting-the-tv,Resetting the TV>>)
+. At the Terms and Conditions screen enter the following remote control: +
+_FF, 2, 8, 9, RW_
+. Select a country such as Cayman Islands, Cuba, or Zimbabwe
 
 
 
