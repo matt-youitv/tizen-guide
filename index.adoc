@@ -1,13 +1,14 @@
-////
-This file will determine if the environment is GitHub or not.
-- If it is on Github it will show links to the sub-sections that will be manually updated
-- If it is NOT on Github it will just include each sub-section
-////
-
 = The Mythos of Tizen
-:icons: font
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+
 :toc:
 :toc-placement!:
+endif::[]
 
 _The Definitive Guide to Tizen Development for The Weather Group_
 
@@ -24,22 +25,233 @@ If you decide to continue -- against my warnings -- then there is not much I can
 '''
 
 
+== TV Developer Mode
 
+=== Enable Developer Mode
+
+To enable developer mode on the TV follow these steps:
+
+- Press the _Home_ button on the remote
+- Go to the _Apps_ screen on the TV
+- Press `1, 2, 3, 4, 5, 6`
+
+NOTE: You will need a keyboard or IR remote for this step.
+
+- Change _Development Mode_ to _on_
+- Enter the IP address of the development computer
+- Restart the TV by holding the _power_ button for 3 seconds
+
+WARNING: The IP address of the TV and the development computer will likely change when they are rebooted!
+
+
+=== Connect Development Computer
+
+==== TV IP Address
+
+You will need to connect to the TV with its IP address. To get the TV's IP Address:
+
+* Press the _Home_ button
+* Navigate to _Settings_ (the Gear icon hidden in the Hamburger menu)
+* Navigate to _General_
+* Navigate to _Network_
+* Navigate to _Network Status_
+* Wait for the network test to finish
+* Navigate to _IP Settings_
+
+==== Development PC
+
+* Open up _Device Manager_ (this was installed along with Tizen Studio)
+* Click the _Remote Device Manager_ button (phone connected to laptop logo on the upper right side of the window)
+* You can either:
+** Click _Scan Devices_ and look for the IP of your TV
+** Or click _Add Devices_ and enter the IP you got in the previous section
+* Click the toggle button under _Connection_ on the TV you are using
+
+
+=== Troubleshooting
+
+If you were able to connect previously and are unable to connect now, the most likely cause is that the IP address of the TV or development computer have changed. Follow the steps above again and double check the IPs.
+
+
+== Certificates
+
+=== Shared Certificates
+
+Using our shared certificates is good practice because it means that developers will not have to remember to install their certificate on a TV every time they want to use a TV.
+
+TODO: Link to where the certificates are stored and instructions on adding them to `certificate-manager`.
+
+
+=== Setting the Default Certificate
+
+WARNING: The build arguments and environment variables for specifying a specific certificate to sign a widget are broken! As of time of writing, you must use the _Certificate Manager_!
+
+To set a default certificate follow:
+
+* Open _Certificate Manager_
+* Highlight the certificate you want to set as default
+* Click the _checkmark_ button (on the upper right side of the window)
+
+NOTE: The little blue checkmark to the left of a certificate's name shows which one is the default.
+
+image:images/certificate-manager-set-default.png[Setting a Default Certificate]
+
+=== Generating a New Certificate
+
+* The certificate needs to be a Samsung Certificate (the Tizen ones stopped working many moons ago and none of the elders know why)
+* TVs need to be whitelisted on a certificate **when the certificate is created!** They cannot be added to an existing certificate (I know)
+* Any TVs that are connected when creating a certificate will have their DUIDs automatically populated, but you should always double check that they have been added at that step in creating a certificate
+
+IMPORTANT: You should not do this if the TV already has a Shared Certificate created for it!
+
+WARNING: You must use a Samsung Certificate for newer TVs.
+
+WARNING: You need to select "partner" in two (I think two?) places when creating the certificate or it may not work.
+
+
+=== Installing the Certificate on a TV
+
+If you are using the pre-made certificates then this step is likely not necessary. However if you have created a new certificate for a new TV this information may come in handy.
+
+* Make sure your default certificate is set to the correct certificate (see guide <<#_setting_the_default_certificate,here>>)
+* Open _Device Manager_
+* Connect to the TV (see guide <<tv-developer-mode#_connect_development_computer, here>>)
+* Right click the TV in the list of connected devices
+* Click _Permit to install applications_
+
+
+
+
+
+
+
+
+
+'''
+
+
+= TODO (Author's Notes)
+
+* Make sure the document is formatted correctly on GitHub (GitHub Flavored AsciiDoc)
+* It would be nice to have a post-push Git script that could update a Confluence page, unless that defeats the purpose of a Confluence page?
+
+
+= Building the Tizen App
+
+`./generate.rb -p tizen-nacl -m Developer -c [Release, Debug]`
+
+`./build.rb -b build/tizen-nacl/[Release, Debug]/ -c [Release, Debug]`
+
+
+= Installing the Tizen App on a TV
+
+Need to be connected tp the TV before the app can be installed. It is easiest to only connect to one TV at a time, that way you don't need to specify the target for the install command.
+
+I would recommend using the `device-manager` for connecting to the TVs.
+
+
+`tizen install -n build/tizen-nacl/[Release, Debug]/localnow-[Release, Debug].wgt`
+
+
+== Why is the App not Installing?
+
+Probably certificate issue.
+
+- Make sure you are using the correct Cert (and that it is not a Tizen Cert)
+  - You can see what Cert was used to sign the package in the last few lines of output from the build command
+  - To change the default Cert see above
+- Make sure the TV is whitelisted on the Cert you are using
+- Make sure that the Cert is installed on the TV
+
+
+== Why the Hell is the App not Installing!?
+
+Error 116 usually means there is too little space on TV to install the widget.
+
+TIP: Release builds are smaller than Debug builds. Debug builds also aren't useful without a debug TV. Although, some work needs to be done to get remote logging and debug level logs.
+
+
+=== Clearing Memory on the TV
+
+The best bet for clearing memory on the TV is to do a factory reset. There are several different types of "reset" available and they will be described later in this chapter.
+
+When reseting remember to do the following:
+
+==== Terms and Conditions Screen
+
+Only accept the first option in the Terms and Conditions seems to stop some built in widgets from being installed.
+
+
+==== Auto Update
+
+In the App -> Settings (Gear Icon) menu disable auto updates.
+
+
+==== Change Location
+
+During the reset you will see a Terms and Conditions screen.
+
+At this screen press the following on an IR remote:
+
+`FF, 2, 8, 9, RW`
+
+Select a country such as Cayman Islands, Cuba, or Zimbabwe.
+
+
+=== Factory Reset?
+
+
+=== Reset Smarthub?
+
+
+=== Reset?
+
+
+=== Start Setup?
+
+
+=== Other Factory Reset? (From Factory Menu)
+
+There is a hidden Factory Reset option in the Factory Menu on the TV.
+To get to the Factory Menu:
+
+. Put the tv to sleep by pressing the power button
+. Wait 5 seconds
+. On the IR remote press the following `Mute, 1, 8, 2, Power`
+. If the TV displays the Samsung Smart TV logo then you likely entered the code correctly
+. Wait for the TV to start and a black and blue menu to appear in the top left of the screen
+. Select _Options_
+. Select _Factory Rest_
+. The TV will turn off
+. Press the power button to turn the TV back on
+
+
+
+== Why God!? Why!?
+
+If the memory is at 0.00mb and you have tried everything suggested here then I am sad to say the TV has passed on. RIP in Peace Samsung Tizen TV, we hardly knew thee.
 ifdef::env-github[]
-// Manually link to all the sub-sections
-.Table of Contents
-- <<sections/tv-developer-mode#,TV Developer Mode>>
-- <<sections/certificates#,Certificates>>
+:ghost: :cry: :poop:
 endif::[]
-
-
-
 ifndef::env-github[]
-:imagesdir: sections/images/
-
-toc::[]
-
-// Manually include all the sub-sections
-include::sections/tv-developer-mode.adoc[leveloffset=+1]
-include::sections/certificates.adoc[leveloffset=+1]
+&#128123; &#128546; &#128169;
 endif::[]
+
+= Debugging the Tizen App
+
+If you have made it this far then you are one of the lucky ones...
+
+Unfortunetly for you, debugging an app on Tizen is an arcaine art. I have never seen a Tizen Development TV with my own eyes, but many spread rumours of their existance. Even if they do exist the chances of finding one in the wild is unlikely.
+
+In order to hear what your TV has to say you need to teach it to use a remote debugging script.
+
+https://github.com/YOU-i-Labs/Commons/tree/master/sandbox/tizen_remote_console
+
+
+= Show Me the Magic (Commands)
+
+There is an ancient command passed down from Tizen developers before. It seems to work on some TVs and not on others -- perhaps newer TVs are immune to this incantation. It seems to cause the TV to forget the widget file that was last in its memory.
+
+Enough talk! The spell is as follows: `sdb shell "0 rmfile any_string"`
+
+WARNING: Be weary of special quotation marks when thou copy and pasteth this command as they can cause the spell to fail.

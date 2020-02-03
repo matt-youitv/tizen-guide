@@ -6,17 +6,22 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
-ifndef::env-github[]
-:icons: font
-endif::[]
 :toc:
 :toc-placement!:
 
-
-These documents were written using AsciiDoctor because it is an advanced markup language that is supported on GitHub!
-
-
 toc::[]
+
+
+== Overview
+
+These documents were written using AsciiDoctor! I chose AsciiDoctor because it is an advanced markup language that is supported on GitHub!
+
+IMPORTANT: I am going to primarily write these documents for GitHub! I will avoid any AsciiDoctor feature that is not supported on GitHub.
+
+
+== Looking for the Tizen Docs?
+
+<<index#,The Tizen docs are right here!>>
 
 
 == Install AsciiDoctor
@@ -25,6 +30,12 @@ link:https://rubygems.org/gems/asciidoctor[The official guide for installing Asc
 
 
 == Building the Docs
+
+== GitHub
+
+GitHub seems to do a pretty good job of rendering AsciiDoctor files.
+
+The only incompatibility I have come across so far is that GitHub does not support the `include::<adoc-file>[]` directive. __This seems to be for security reasons.__
 
 === HTML
 
@@ -39,13 +50,6 @@ To build PDFs you will need to link:https://rubygems.org/gems/asciidoctor-pdf[in
 Once that is installed simply run this command:
 
 `asciidoctor-pdf index.adoc`
-
-
-== GitHub
-
-GitHub seems to do a pretty good job of rendering AsciiDoctor files.
-
-The only incompatibility I have come across so far is that GitHub does not support the `include::<adoc-file>[]` directive. __This seems to be for security reasons.__
 
 
 == Text Editor Plugins
