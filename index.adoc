@@ -1,6 +1,8 @@
-= The Mythos of Tizen
+= Guide to Tizen
+// Fix for linking to sections in PDF and GitHub
 :idprefix:
 :idseparator: -
+// Give captions icons on GitHub
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -8,73 +10,24 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
+// Enable table of contents and allow different ToC placement
 :toc:
 :toc-placement!:
 
-_The Definitive Guide to Tizen Development for The Weather Group_
+
+
+*Turn back now!* +
+Many a developer and TV have lost their minds while attempting to develop on Tizen.
 
 '''
 
-_**Turn back now!!!**_
-
-Many a TV and developer have lost their minds while attempting to develop on Tizen. No mere mortal can overcome the challenges of this terrifying platform and many a Tizen TV hath fallen to insanity.
-
-Ever since the Samsung Gods hath abandoned us we have resorted to witchcraft and rituals spoken of by other Tizen developers. _**Forget all of that!!!**_ This is to be the definitive guide that shall not lead you astray. That is so long as the Samsung Gods hath not played a cruel trick on us and _"fixed"_ anything in any new updates.
-
-If you decide to continue -- against my warnings -- then there is not much I can do for you. The only assistance I can offer is this manuscript documenting my adventures in this forsaken land.
-
-'''
+_This document is dedicated to all the Tizen TVs that hath fallen to insanity._
 
 
+
+// Table of contents goes here
 toc::[]
 
-
-== TV Developer Mode
-
-=== Enable Developer Mode
-
-To enable developer mode on the TV follow these steps:
-
-- Press the _Home_ button on the remote
-- Go to the _Apps_ screen on the TV
-- Press `1, 2, 3, 4, 5, 6`
-
-NOTE: You will need a keyboard or IR remote for this step.
-
-- Change _Development Mode_ to _on_
-- Enter the IP address of the development computer
-- Restart the TV by holding the _power_ button for 3 seconds
-
-WARNING: The IP address of the TV and the development computer will likely change when they are rebooted!
-
-
-=== Connect Development Computer
-
-==== TV IP Address
-
-You will need to connect to the TV with its IP address. To get the TV's IP Address:
-
-* Press the _Home_ button
-* Navigate to _Settings_ (the Gear icon hidden in the Hamburger menu)
-* Navigate to _General_
-* Navigate to _Network_
-* Navigate to _Network Status_
-* Wait for the network test to finish
-* Navigate to _IP Settings_
-
-==== Development PC
-
-* Open up _Device Manager_ (this was installed along with Tizen Studio)
-* Click the _Remote Device Manager_ button (phone connected to laptop logo on the upper right side of the window)
-* You can either:
-** Click _Scan Devices_ and look for the IP of your TV
-** Or click _Add Devices_ and enter the IP you got in the previous section
-* Click the toggle button under _Connection_ on the TV you are using
-
-
-=== Troubleshooting
-
-If you were able to connect previously and are unable to connect now, the most likely cause is that the IP address of the TV or development computer have changed. Follow the steps above again and double check the IPs.
 
 
 == Certificates
@@ -125,29 +78,82 @@ If you are using the pre-made certificates then this step is likely not necessar
 
 
 
+== Connecting to a TV
+
+There are two main steps to connecting to a Tizen TV.
+
+1. The TV must be pointing to the development computer's IP (see <<#enabling-developer-mode,Enabling Developer Mode>>)
+2. The development computer needs to actually connect to the TV (see <<#connecting-development-computer-to-pc, Connecting Development Computer to TV>>)
+
+
+=== Enabling Developer Mode
+
+To enable developer mode on the TV follow these steps:
+
+- Press the _Home_ button on the remote
+- Go to the _Apps_ screen on the TV
+- Press _1, 2, 3, 4, 5, 6_
+
+NOTE: You will need a keyboard or IR remote for this step.
+
+- Change _Development Mode_ to _On_
+- Enter the IP address of the development computer
+- Restart the TV by holding the _Power_ button for 3 seconds
+
+WARNING: The IP address of the TV and the development computer will likely change when they are rebooted!
+
+
+=== Connecting Development Computer to TV
+
+==== Getting the TV's IP Address
+
+You will need to connect to the TV with its IP address. To get the TV's IP Address:
+
+* Press the _Home_ button
+* Navigate to _Settings_ (the Gear icon hidden in the Hamburger menu)
+* Navigate to _General_
+* Navigate to _Network_
+* Navigate to _Network Status_
+* Wait for the network test to finish
+* Navigate to _IP Settings_
+
+==== Development Computer Connection
+
+* Open up _Device Manager_ (this was installed along with Tizen Studio)
+* Click the _Remote Device Manager_ button (phone connected to laptop logo on the upper right side of the window)
+* You can either:
+** Click _Scan Devices_ and look for the IP of your TV
+** Or click _Add Devices_ and enter the IP you got in the previous section
+* Click the toggle button under _Connection_ on the TV you are using
+
+
+=== Troubleshooting Connection
+
+If you were able to connect previously and are unable to connect now, the most likely cause is that the IP address of the TV or development computer have changed. Follow the steps above again and double check the IPs have not changed on either device.
 
 
 
+== Building the Tizen Widget
+
+Building the Tizen widget is similar to building on any other platform and instructions are also provided in the project's README.
 
 
+=== Generating
 
-'''
-
-
-== TODO (Author's Notes)
-
-* Make sure the document is formatted correctly on GitHub (GitHub Flavored AsciiDoc)
-* It would be nice to have a post-push Git script that could update a Confluence page, unless that defeats the purpose of a Confluence page?
-
-
-== Building the Tizen App
+Run the following command to generate the project:
 
 `./generate.rb -p tizen-nacl -m Developer -c [Release, Debug]`
 
-`./build.rb -b build/tizen-nacl/[Release, Debug]/ -c [Release, Debug]`
+
+=== Building
+
+Run the following command to build the widget:
+
+`./build.rb -b build/tizen-nacl/[Release, Debug]/`
 
 
-== Installing the Tizen App on a TV
+
+== Installing the Tizen Widget on a TV
 
 Need to be connected tp the TV before the app can be installed. It is easiest to only connect to one TV at a time, that way you don't need to specify the target for the install command.
 
@@ -156,71 +162,92 @@ I would recommend using the `device-manager` for connecting to the TVs.
 
 `tizen install -n build/tizen-nacl/[Release, Debug]/localnow-[Release, Debug].wgt`
 
-
-=== Why is the App not Installing?
-
-Probably certificate issue.
-
-- Make sure you are using the correct Cert (and that it is not a Tizen Cert)
-  - You can see what Cert was used to sign the package in the last few lines of output from the build command
-  - To change the default Cert see above
-- Make sure the TV is whitelisted on the Cert you are using
-- Make sure that the Cert is installed on the TV
+NOTE: The parameter is the path to the widget (__.wgt__) file itself!
 
 
-=== Why the Hell is the App not Installing!?
+=== Why is the Widget not Installing?
+
+==== Certificate Issues
+
+* Make sure you are using the correct Cert (and that it is not a Tizen Cert)
+** You can see what Cert was used to sign the package in the last few lines of output from the build command
+** To change the default Cert see above
+* Make sure the TV is whitelisted on the Cert you are using
+* Make sure that the Cert is installed on the TV
+
+
+==== Storage Issues
 
 Error 116 usually means there is too little space on TV to install the widget.
 
 TIP: Release builds are smaller than Debug builds. Debug builds also aren't useful without a debug TV. Although, some work needs to be done to get remote logging and debug level logs.
 
 
-==== Clearing Memory on the TV
 
-The best bet for clearing memory on the TV is to do a factory reset. There are several different types of "reset" available and they will be described later in this chapter.
+== Why the Hell is the Widget not Installing!? (Clearing Storage on the TV)
 
-When reseting remember to do the following:
+The main issue we have encountered when trying to install widgets onto TVs is the surprising lack of storage available on them! This section will walk through all the ways we have found to maximize the amount of storage available on the TV.
 
-===== Terms and Conditions Screen
+=== Show Me the Magic
 
-Only accept the first option in the Terms and Conditions seems to stop some built in widgets from being installed.
+There is an ancient command passed down from Tizen developers before. It seems to work on some TVs and not on others -- perhaps newer TVs are immune to this incantation. It seems to cause the TV to forget the widget file that was last in its memory.
 
+Enough talk! The spell is as follows: `sdb shell "0 rmfile any_string"`
 
-===== Auto Update
-
-In the App -> Settings (Gear Icon) menu disable auto updates.
+WARNING: Be weary of special quotation marks when thou copy and pasteth this command as they can cause the spell to fail.
 
 
-===== Change Location
+=== USB Storage
 
-During the reset you will see a Terms and Conditions screen.
+The TVs can use a USB thumb drive as storage for *widgets installed through the store.* Unfortunately, widgets installed through the command line tools will be installed to the built-in storage.
 
-At this screen press the following on an IR remote:
+This can potentially help with maximizing built-in storage though! Tizen TVs like to fill their memory with widgets that are automatically installed. If a USB storage device is present the TV might install those widgets onto it, freeing up built-in storage.
+
+
+=== Auto Update
+
+Tizen TVs like to automatically download widgets and update which quickly fill the TVs built in memory. One was to avoid this is by disabling _Auto Update_.
+
+* Press the _Home_ button on the remote
+* Navigate to the _Apps_ menu
+* Navigate to the _Settings_ (the gear icon at the top right of the screen)
+* Toggle the _Auto Update_ button (near the top right of the screen)
+
+
+=== Change Location
+
+Another method for avoiding filling up the TV's storage is to choose a location that does not have any automatically installing widget.
+
+* Do a factory reset (see <<#resetting-the-tv,Resetting the TV>>)
+* At the Terms and Conditions screen enter the following remote control
 
 `FF, 2, 8, 9, RW`
 
-Select a country such as Cayman Islands, Cuba, or Zimbabwe.
+IMPORTANT: You will need an IR remote to enter the code!
+
+* Select a country such as Cayman Islands, Cuba, or Zimbabwe
 
 
-===== Resetting the TV
+
+=== Resetting the TV
 
 There are a few different ways to reset the TV. I am not sure how they vary, but I usually try each until the memory issue in resolved.
 
 IMPORTANT: Some reset options may not be available if you are in an app. Press the _Home_ button on the remote and select _Live TV_ before going to the settings to see all the reset options.
 
-====== Factory Reset?
+==== Factory Reset?
 
 
-====== Reset Smarthub?
+==== Reset Smarthub?
 
 
-====== Reset?
+==== Reset?
 
 
-====== Start Setup?
+==== Start Setup?
 
 
-====== Other Factory Reset? (From Factory Menu)
+==== Other Factory Reset? (From Factory Menu)
 
 There is a hidden Factory Reset option in the Factory Menu on the TV.
 To get to the Factory Menu:
@@ -239,13 +266,15 @@ To get to the Factory Menu:
 
 === Why God!? Why!?
 
-If the memory is at 0.00mb and you have tried everything suggested here then I am sad to say the TV has passed on. RIP in Peace Samsung Tizen TV, we hardly knew thee.
+If the memory is at 0.00mb and you have tried everything suggested here then I am sad to say the TV has passed on. RIP in peace Tizen TV, we hardly knew thee.
 ifdef::env-github[]
 :ghost: :cry: :poop:
 endif::[]
 ifndef::env-github[]
 &#128123; &#128546; &#128169;
 endif::[]
+
+
 
 == Debugging the Tizen App
 
@@ -256,12 +285,3 @@ Unfortunetly for you, debugging an app on Tizen is an arcaine art. I have never 
 In order to hear what your TV has to say you need to teach it to use a remote debugging script.
 
 https://github.com/YOU-i-Labs/Commons/tree/master/sandbox/tizen_remote_console
-
-
-== Show Me the Magic (Commands)
-
-There is an ancient command passed down from Tizen developers before. It seems to work on some TVs and not on others -- perhaps newer TVs are immune to this incantation. It seems to cause the TV to forget the widget file that was last in its memory.
-
-Enough talk! The spell is as follows: `sdb shell "0 rmfile any_string"`
-
-WARNING: Be weary of special quotation marks when thou copy and pasteth this command as they can cause the spell to fail.
