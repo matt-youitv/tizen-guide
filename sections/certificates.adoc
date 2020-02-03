@@ -10,21 +10,9 @@ ifdef::env-github[]
 :warning-caption: :warning:
 :toc:
 :toc-placement!:
-// This line was intentionally left blank
 
 toc::[]
 endif::[]
-
-
-One of the biggest pains is how certificates are handled with Tizen TVs. Here are some key points:
-
-- TVs need to be assigned to a certificate **when the certificate is created!** They cannot be added to an existing certificate (I know)
-- Any TVs that are connected when creating a certificate will have their DUIDs automatically populated, but you should always double check that they have been added at that step in creating a certificate
-- The certificate needs to be a Samsung Certificate (the Tizen ones stopped working many moons ago and none of the elders know why)
-- The build arguments and environment variables for specifying a specific signing certificate are broken!
-  - The only way to select the certificate that will be ised to sign is by using `certificate-manager` and select the certificate you want to be the default and then click the checkmark on the upper right side of the window
-
-image:certificate-manager-set-default.png[Setting a Default Certificate]
 
 
 == Shared Certificates
@@ -34,7 +22,25 @@ Using our shared certificates is good practice because it means that developers 
 TODO: Link to where the certificates are stored and instructions on adding them to `certificate-manager`.
 
 
+== Setting the Default Certificate
+
+WARNING: The build arguments and environment variables for specifying a specific certificate to sign a widget are broken! As of time of writing, you must use the _Certificate Manager_!
+
+To set a default certificate follow:
+
+* Open _Certificate Manager_
+* Highlight the certificate you want to set as default
+* Click the _checkmark_ button (on the upper right side of the window)
+
+NOTE: The little blue checkmark to the left of a certificate's name shows which one is the default.
+
+image:certificate-manager-set-default.png[Setting a Default Certificate]
+
 == Generating a New Certificate
+
+* The certificate needs to be a Samsung Certificate (the Tizen ones stopped working many moons ago and none of the elders know why)
+* TVs need to be whitelisted on a certificate **when the certificate is created!** They cannot be added to an existing certificate (I know)
+* Any TVs that are connected when creating a certificate will have their DUIDs automatically populated, but you should always double check that they have been added at that step in creating a certificate
 
 IMPORTANT: You should not do this if the TV already has a Shared Certificate created for it!
 
@@ -45,4 +51,10 @@ WARNING: You need to select "partner" in two (I think two?) places when creating
 
 == Installing the Certificate on a TV
 
-If you are using the pre-made certificates then this step is not necessary. However if you have created a new certificate for a new TV this information may come in handy.
+If you are using the pre-made certificates then this step is likely not necessary. However if you have created a new certificate for a new TV this information may come in handy.
+
+* Make sure your default certificate is set to the correct certificate (see guide <<#_setting_the_default_certificate,here>>)
+* Open _Device Manager_
+* Connect to the TV (see guide <<tv-developer-mode#_connect_development_computer, here>>)
+* Right click the TV in the list of connected devices
+* Click _Permit to install applications_

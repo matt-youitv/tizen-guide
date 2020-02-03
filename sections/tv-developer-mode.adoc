@@ -10,14 +10,52 @@ ifdef::env-github[]
 :warning-caption: :warning:
 :toc:
 :toc-placement!:
-// This line was intentionally left blank
 
 toc::[]
 endif::[]
 
 
-NOTE: Write how to get the TV into developer mode.
+== Enable Developer Mode
 
-For this you may require the TV wand with numbers scribed on it.
+To enable developer mode on the TV follow these steps:
 
-TIP: The TV needs to have the IP address of the development computer. This can change when the computer is rebooted or if another developer uses the TV.
+- Press the _Home_ button on the remote
+- Go to the _Apps_ screen on the TV
+- Press `1, 2, 3, 4, 5, 6`
+
+NOTE: You will need a keyboard or IR remote for this step.
+
+- Change _Development Mode_ to _on_
+- Enter the IP address of the development computer
+- Restart the TV by holding the _power_ button for 3 seconds
+
+WARNING: The IP address of the TV and the development computer will likely change when they are rebooted!
+
+
+== Connect Development Computer
+
+=== TV IP Address
+
+You will need to connect to the TV with its IP address. To get the TV's IP Address:
+
+* Press the _Home_ button
+* Navigate to _Settings_ (the Gear icon hidden in the Hamburger menu)
+* Navigate to _General_
+* Navigate to _Network_
+* Navigate to _Network Status_
+* Wait for the network test to finish
+* Navigate to _IP Settings_
+
+=== Development PC
+
+* Open up _Device Manager_ (this was installed along with Tizen Studio)
+* Click the _Remote Device Manager_ button (phone connected to laptop logo on the upper right side of the window)
+* You can either:
+** Click _Scan Devices_ and look for the IP of your TV
+** Or click _Add Devices_ and enter the IP you got in the previous section
+* Click the toggle button under _Connection_ on the TV you are using
+
+
+== Troubleshooting
+
+If you were able to connect previously and are unable to connect now, the most likely cause is that the IP address of the TV or development computer have changed. Follow the steps above again and double check the IPs.
