@@ -2,13 +2,16 @@
 // Fix for linking to sections in PDF and GitHub
 :idprefix:
 :idseparator: -
-// Give captions icons on GitHub
+// Give captions icons
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 :important-caption: :heavy_exclamation_mark:
 :caution-caption: :fire:
 :warning-caption: :warning:
+endif::[]
+ifndef::env-github[]
+:icons: font
 endif::[]
 // Enable table of contents and allow different ToC placement
 :toc:
@@ -18,8 +21,6 @@ endif::[]
 
 *Turn back now!* +
 Many a developer and TV have lost their minds while attempting to develop on Tizen.
-
-'''
 
 _This document is dedicated to all the Tizen TVs that hath fallen to insanity._
 
@@ -36,7 +37,7 @@ toc::[]
 
 Using our shared certificates is good practice because it means that developers will not have to remember to install their certificate on a TV every time they want to use a TV.
 
-TODO: Link to where the certificates are stored and instructions on adding them to `certificate-manager`.
+TODO: Link to where the certificates are stored and instructions on adding them to _Certificate Manager_.
 
 
 === Setting the Default Certificate
@@ -70,7 +71,7 @@ WARNING: You need to select "partner" in two (I think two?) places when creating
 
 If you are using the pre-made certificates then this step is likely not necessary. However if you have created a new certificate for a new TV this information may come in handy.
 
-. Make sure your default certificate is set to the correct certificate (see guide <<#setting-the-default-certificate,here>>)
+. Make sure the certificate you want to install is set as the default certificate (see guide <<#setting-the-default-certificate,here>>)
 . Open _Device Manager_
 . Connect to the TV (see guide <<#connect-development-computer, here>>)
 . Right click the TV in the list of connected devices
@@ -109,12 +110,13 @@ WARNING: The IP address of the TV and the development computer will likely chang
 You will need to connect to the TV with its IP address. To get the TV's IP Address:
 
 . Press the _Home_ button
-. Navigate to _Settings_ (the Gear icon hidden in the Hamburger menu)
+. Navigate to _Settings_ (the gear icon hidden in the hamburger menu)
 . Navigate to _General_
 . Navigate to _Network_
 . Navigate to _Network Status_
 . Wait for the network test to finish
 . Navigate to _IP Settings_
+
 
 ==== Development Computer Connection
 
@@ -123,7 +125,7 @@ You will need to connect to the TV with its IP address. To get the TV's IP Addre
 . You can either:
 .. Click _Scan Devices_ and look for the IP of your TV
 .. Or click _Add Devices_ and enter the IP you got in the previous section
-. Click the toggle button under _Connection_ on the TV you are using
+. Click the toggle button under the _Connection_ column on the TV you are using
 
 
 === Troubleshooting Connection
@@ -220,8 +222,7 @@ Another method for avoiding filling up the TV's storage is to choose a location 
 IMPORTANT: You will need an IR remote for this!
 
 . Do a factory reset (see <<#resetting-the-tv,Resetting the TV>>)
-. At the Terms and Conditions screen enter the following remote control: +
-_FF, 2, 8, 9, RW_
+. *At the Terms and Conditions screen* enter the following on an IR remote _FF, 2, 8, 9, RW_
 . Select a country such as Cayman Islands, Cuba, or Zimbabwe
 
 
@@ -231,6 +232,7 @@ _FF, 2, 8, 9, RW_
 There are a few different ways to reset the TV. I am not sure how they vary, but I usually try each until the memory issue in resolved.
 
 IMPORTANT: Some reset options may not be available if you are in an app. Press the _Home_ button on the remote and select _Live TV_ before going to the settings to see all the reset options.
+
 
 ==== Factory Reset?
 
@@ -251,13 +253,13 @@ To get to the Factory Menu:
 
 . Put the tv to sleep by pressing the power button
 . Wait 5 seconds
-. On the IR remote press the following `Mute, 1, 8, 2, Power`
+. On the IR remote press the following _Mute, 1, 8, 2, Power_
 . If the TV displays the Samsung Smart TV logo then you likely entered the code correctly
 . Wait for the TV to start and a black and blue menu to appear in the top left of the screen
 . Select _Options_
 . Select _Factory Rest_
 . The TV will turn off
-. Press the power button to turn the TV back on
+. Press the _Power_ button to turn the TV back on
 
 
 
@@ -273,7 +275,7 @@ endif::[]
 
 
 
-== Debugging the Tizen App
+== Debugging the Tizen Widget
 
 If you have made it this far then you are one of the lucky ones...
 
