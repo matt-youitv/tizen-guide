@@ -1,4 +1,6 @@
 = The Mythos of Tizen
+:idprefix:
+:idseparator: -
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -115,9 +117,9 @@ WARNING: You need to select "partner" in two (I think two?) places when creating
 
 If you are using the pre-made certificates then this step is likely not necessary. However if you have created a new certificate for a new TV this information may come in handy.
 
-* Make sure your default certificate is set to the correct certificate (see guide <<#_setting_the_default_certificate,here>>)
+* Make sure your default certificate is set to the correct certificate (see guide <<#setting-the-default-certificate,here>>)
 * Open _Device Manager_
-* Connect to the TV (see guide <<tv-developer-mode#_connect_development_computer, here>>)
+* Connect to the TV (see guide <<#connect-development-computer, here>>)
 * Right click the TV in the list of connected devices
 * Click _Permit to install applications_
 
@@ -132,20 +134,20 @@ If you are using the pre-made certificates then this step is likely not necessar
 '''
 
 
-= TODO (Author's Notes)
+== TODO (Author's Notes)
 
 * Make sure the document is formatted correctly on GitHub (GitHub Flavored AsciiDoc)
 * It would be nice to have a post-push Git script that could update a Confluence page, unless that defeats the purpose of a Confluence page?
 
 
-= Building the Tizen App
+== Building the Tizen App
 
 `./generate.rb -p tizen-nacl -m Developer -c [Release, Debug]`
 
 `./build.rb -b build/tizen-nacl/[Release, Debug]/ -c [Release, Debug]`
 
 
-= Installing the Tizen App on a TV
+== Installing the Tizen App on a TV
 
 Need to be connected tp the TV before the app can be installed. It is easiest to only connect to one TV at a time, that way you don't need to specify the target for the install command.
 
@@ -155,7 +157,7 @@ I would recommend using the `device-manager` for connecting to the TVs.
 `tizen install -n build/tizen-nacl/[Release, Debug]/localnow-[Release, Debug].wgt`
 
 
-== Why is the App not Installing?
+=== Why is the App not Installing?
 
 Probably certificate issue.
 
@@ -166,30 +168,30 @@ Probably certificate issue.
 - Make sure that the Cert is installed on the TV
 
 
-== Why the Hell is the App not Installing!?
+=== Why the Hell is the App not Installing!?
 
 Error 116 usually means there is too little space on TV to install the widget.
 
 TIP: Release builds are smaller than Debug builds. Debug builds also aren't useful without a debug TV. Although, some work needs to be done to get remote logging and debug level logs.
 
 
-=== Clearing Memory on the TV
+==== Clearing Memory on the TV
 
 The best bet for clearing memory on the TV is to do a factory reset. There are several different types of "reset" available and they will be described later in this chapter.
 
 When reseting remember to do the following:
 
-==== Terms and Conditions Screen
+===== Terms and Conditions Screen
 
 Only accept the first option in the Terms and Conditions seems to stop some built in widgets from being installed.
 
 
-==== Auto Update
+===== Auto Update
 
 In the App -> Settings (Gear Icon) menu disable auto updates.
 
 
-==== Change Location
+===== Change Location
 
 During the reset you will see a Terms and Conditions screen.
 
@@ -200,19 +202,25 @@ At this screen press the following on an IR remote:
 Select a country such as Cayman Islands, Cuba, or Zimbabwe.
 
 
-=== Factory Reset?
+===== Resetting the TV
+
+There are a few different ways to reset the TV. I am not sure how they vary, but I usually try each until the memory issue in resolved.
+
+IMPORTANT: Some reset options may not be available if you are in an app. Press the _Home_ button on the remote and select _Live TV_ before going to the settings to see all the reset options.
+
+====== Factory Reset?
 
 
-=== Reset Smarthub?
+====== Reset Smarthub?
 
 
-=== Reset?
+====== Reset?
 
 
-=== Start Setup?
+====== Start Setup?
 
 
-=== Other Factory Reset? (From Factory Menu)
+====== Other Factory Reset? (From Factory Menu)
 
 There is a hidden Factory Reset option in the Factory Menu on the TV.
 To get to the Factory Menu:
@@ -229,7 +237,7 @@ To get to the Factory Menu:
 
 
 
-== Why God!? Why!?
+=== Why God!? Why!?
 
 If the memory is at 0.00mb and you have tried everything suggested here then I am sad to say the TV has passed on. RIP in Peace Samsung Tizen TV, we hardly knew thee.
 ifdef::env-github[]
@@ -239,7 +247,7 @@ ifndef::env-github[]
 &#128123; &#128546; &#128169;
 endif::[]
 
-= Debugging the Tizen App
+== Debugging the Tizen App
 
 If you have made it this far then you are one of the lucky ones...
 
@@ -250,7 +258,7 @@ In order to hear what your TV has to say you need to teach it to use a remote de
 https://github.com/YOU-i-Labs/Commons/tree/master/sandbox/tizen_remote_console
 
 
-= Show Me the Magic (Commands)
+== Show Me the Magic (Commands)
 
 There is an ancient command passed down from Tizen developers before. It seems to work on some TVs and not on others -- perhaps newer TVs are immune to this incantation. It seems to cause the TV to forget the widget file that was last in its memory.
 
