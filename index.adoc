@@ -389,4 +389,4 @@ NOTE: To see a live stream of the logs while the app is running run `tail -f out
 
 == Engine Documentation
 
-Some more advanced or less common tasks might not be covered in this document. In that case you can check the engine documentation for link:https://developer.youi.tv/latest/Content/Tizen_Intro/H1TizenIntro.htm["Working with Tizen"]
+Some more advanced or less common tasks might not be covered in this document. In that case you can check the engine documentation for link:https://developer.youi.tv/latest/Content/Tizen_Intro/H1TizenIntro.htm["Working with Tizen"].
