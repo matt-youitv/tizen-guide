@@ -25,19 +25,55 @@ Many a developer and TV have lost their minds while attempting to develop on Tiz
 _This document is dedicated to all the Tizen TVs that hath fallen to insanity._
 
 
-
 // Table of contents goes here
 toc::[]
+// Force a page break
+<<<
+
+
+
+== Installing Tizen Studio
+
+The existing <<#engine-documentation,Engine Documentation>> gives a good set of instructions for installing Tizen Studio with one note below.
+
+NOTE: Install the latest version on Tizen Studio, despite what the documentation says!
 
 
 
 == Certificates
 
-=== Shared Certificates
+=== Importing Shared Certificates
 
-Using our shared certificates is good practice because it means that developers will not have to remember to install their certificate on a TV every time they want to use a TV.
+Using our shared certificates is good practice because it avoids many of the common issues that cause widgets to fail to install.
 
-TODO: Link to where the certificates are stored and instructions on adding them to _Certificate Manager_.
+To import a shared certificate:
+
+. Download the certificate zip file for the target TV from link:https://drive.google.com/drive/folders/1DblKMQ6UEPAZltzKkqWvDXUXzX46wYpz?usp=sharing[here]
+. Unzip the contents into _~/SamsungCertificate_
+. Open the _Certificate Manager_
+. Click the _Plus_ to create a new certificate
+. Select _Samsung_
+. Select _TV_
+. Click _Next_
+. Select _Create a new certificate profile_ and enter a _Certificate profile name_
+. Click _Next_
+. Select _Select an existing author certificate_
+. Click _Next_
+. Click _Browse_
+. Navigate to the folder you unzipped in the previous step
+. Select the _author.p12_ file
+. Fill the _Password_ field with "password"
+. Click _Next_
+. Select _Select an existing distributor certificate_
+. Click _Browse_
+. Navigate to the folder you unzipped in the previous step
+. Select the _distributor.p12_ file
+. Fill the _Password_ field with "password"
+. Click _Finish_
+. The certificate should have been imported and set as the default
+
+NOTE: The certificates may be moved into the GitHub repository in the future.
+
 
 
 === Setting the Default Certificate
@@ -56,24 +92,27 @@ image:images/certificate-manager-set-default.png[Setting a Default Certificate]
 
 === Generating a New Certificate
 
-* The certificate needs to be a Samsung Certificate (the Tizen ones stopped working many moons ago and none of the elders know why)
-* TVs need to be whitelisted on a certificate **when the certificate is created!** They cannot be added to an existing certificate (I know)
-* Any TVs that are connected when creating a certificate will have their DUIDs automatically populated, but you should always double check that they have been added at that step in creating a certificate
+WARNING: You should use the shared certificates if they are available!
 
-IMPORTANT: You should not do this if the TV already has a Shared Certificate created for it!
+This is not done very often so I will link to the <<#engine-documentation,Engine Documentation>>.
 
-WARNING: You must use a Samsung Certificate for newer TVs.
+Here are a few tips when following the documentation:
 
-WARNING: You need to select "partner" in two (I think two?) places when creating the certificate or it may not work.
+* The certificate needs to be a Samsung Certificate
+** The Tizen ones stopped working many moons ago and none of the elders know why
+* TVs need to be whitelisted on a certificate **when the certificate is created!**
+** Corollary: TVs cannot be added to an existing certificate
+* Any TVs that are connected when creating a certificate will have their DUIDs automatically populated
+* When creating the _Distributer Certificate_ you need to change _Privilege_ to _"Partner"_
 
 
 === Installing the Certificate on a TV
 
-If you are using the pre-made certificates then this step is likely not necessary. However if you have created a new certificate for a new TV this information may come in handy.
+NOTE: If you are using the pre-made certificates then this step is likely not necessary.
 
 . Make sure the certificate you want to install is set as the default certificate (see guide <<#setting-the-default-certificate,here>>)
 . Open _Device Manager_
-. Connect to the TV (see guide <<#connect-development-computer, here>>)
+. Connect to the TV (see <<#development-computer-connection,Development Computer Connection>>)
 . Right click the TV in the list of connected devices
 . Click _Permit to install applications_
 
@@ -95,7 +134,7 @@ To enable developer mode on the TV follow these steps:
 
 . Press the _Home_ button on the remote
 . Go to the _Apps_ screen on the TV
-. Press _1, 2, 3, 4, 5, 6_
+. Press _1, 2, 3, 4, 5_ on a keyboard or IR remote
 . Change _Development Mode_ to _On_
 . Enter the IP address of the development computer
 . Restart the TV by holding the _Power_ button for 3 seconds
@@ -170,24 +209,29 @@ NOTE: The parameter is the path to the widget (__.wgt__) file itself!
 
 ==== Certificate Issues
 
-* Make sure you are using the correct Cert (and that it is not a Tizen Cert)
-** You can see what Cert was used to sign the package in the last few lines of output from the build command
-** To change the default Cert see above
-* Make sure the TV is whitelisted on the Cert you are using
-* Make sure that the Cert is installed on the TV
+* Make sure you are using the correct certificate set as default
+** You can see what certificate was used to sign the package in the last few lines of the build output
+** To change the default certificate see <<#setting-the-default-certificate,Setting the Default Certificate>>
+* Make sure the TV is whitelisted on the certificate you are using
+* Make sure that the certificate is installed on the TV
 
 
 ==== Storage Issues
 
-Error 116 usually means there is too little space on TV to install the widget.
+Error 116 means there is not enough storage on TV to install the widget.
 
-TIP: Release builds are smaller than Debug builds. Debug builds also aren't useful without a debug TV. Although, some work needs to be done to get remote logging and debug level logs.
+* The first thing you can try is to build a release widget. Release builds are much smaller than debug builds and debug builds aren't very useful without a debug TV.
+
+NOTE: Release builds will suppress `YI_LOGD(...)` but that can be worked around.
+
+* If that fails see <<#clearing-storage-on-the-tv,Clearing Storage on the TV>>
 
 
+== Clearing Storage on the TV
 
-== Why the Hell is the Widget not Installing!? (Clearing Storage on the TV)
+This section was previously titled, *"Why the Hell is the Widget not Installing!?"*
 
-The main issue we have encountered when trying to install widgets onto TVs is the surprising lack of storage available on them! This section will walk through all the ways we have found to maximize the amount of storage available on the TV.
+The main issue we have encountered when trying to install widgets onto TVs is the surprising lack of storage available on them! The amount of storage required for each widget varies, but you will need about 50mb for the You.I Engine alone. This section will walk through all the ways we have found to maximize the amount of storage available on the TV.
 
 === Show Me the Magic
 
@@ -231,25 +275,39 @@ IMPORTANT: You will need an IR remote for this!
 
 There are a few different ways to reset the TV. I am not sure how they vary, but I usually try each until the memory issue in resolved.
 
-IMPORTANT: Some reset options may not be available if you are in an app. Press the _Home_ button on the remote and select _Live TV_ before going to the settings to see all the reset options.
+IMPORTANT: Some reset options may not be available if you have a widget open. Press the _Home_ button on the remote and select _Live TV_ before going to the _Settings_ menu to see all the reset options.
 
 
-==== Factory Reset?
+==== Start Setup
+
+. _Settings_
+. _General_ (the wrench icon)
+. _Start Setup_
 
 
-==== Reset Smarthub?
+==== Reset Smart Hub
+
+NOTE: This one seems to work _most_ of the time.
+
+. _Settings_
+. _Support_ (the cloud? icon)
+. _Self Diagnosis_
+. _Reset Smart Hub_
 
 
-==== Reset?
+==== Reset
+
+. _Settings_
+. _Support_ (the cloud? icon)
+. _Self Diagnosis_
+. _Reset_
 
 
-==== Start Setup?
+==== Factory Reset (Hidden!)
 
+There is a hidden _Factory Reset_ option in the _Factory Menu_ on the TV.
 
-==== Other Factory Reset? (From Factory Menu)
-
-There is a hidden Factory Reset option in the Factory Menu on the TV.
-To get to the Factory Menu:
+To get to the _Factory Menu_:
 
 . Put the tv to sleep by pressing the power button
 . Wait 5 seconds
@@ -260,7 +318,6 @@ To get to the Factory Menu:
 . Select _Factory Rest_
 . The TV will turn off
 . Press the _Power_ button to turn the TV back on
-
 
 
 === Why God!? Why!?
@@ -275,12 +332,61 @@ endif::[]
 
 
 
+== Uninstalling a Widget
+
+NOTE: There is a command line way to uninstall an app which may free some extra space.
+
+I have never had any issues with uninstalling widgets from the TV's menu:
+
+. Press the _Home_ button on the remote
+. Navigate to the _Apps_ menu
+. Navigate to the _Settings_ (the gear icon at the top right of the screen)
+. Select the widget
+. Click _Delete_
+. Click _Delete_ again
+. (Optional) clean up the storage by running the <<#show-me-the-magic, Magic Command>>.
+
+
 == Debugging the Tizen Widget
 
 If you have made it this far then you are one of the lucky ones...
 
-Unfortunetly for you, debugging an app on Tizen is an arcaine art. I have never seen a Tizen Development TV with my own eyes, but many spread rumours of their existance. Even if they do exist the chances of finding one in the wild is unlikely.
+Unfortunately for you, debugging an app on Tizen is an arcane art. I have never seen a Tizen Development TV with my own eyes, but many spread rumors of their existence. Even if they do exist the chances of finding one in the wild is unlikely.
 
-In order to hear what your TV has to say you need to teach it to use a remote debugging script.
+The easiest way to get logs from the TV is to use the link:https://github.com/YOU-i-Labs/Commons/tree/master/sandbox/tizen_remote_console[remote debugging script].
 
-https://github.com/YOU-i-Labs/Commons/tree/master/sandbox/tizen_remote_console
+
+=== Client Script Setup
+
+Several changes need to be made to the project's source code in order to get the full logs from the TV.
+
+. Git clone the link:https://github.com/YOU-i-Labs/Commons[Commons repository]
+. In your root project folder create the directory _Resources/tizen-nacl/web/scripts/_
+. Copy _Commons/sandbox/tizen_remote_console/client/YiRemoteLogger.js_ into the directory created in the previous step
+. Add the line `list(INSERT YI_USER_TIZEN_JS_FILES 0 "YiRemoteLogger.js")` to the _CMakeLists.txt_ file around line 433
+. Add the line `CYITizenNaClLogPolicy::SetWriteToJavascriptWindow(true);` to the _src/app/LocalNowApp.cpp_ file at the start of the _UserInit(...)_ function
+. <<#build-the-tizen-widget,Re-build the Tizen widget>>
+. Finally <<#installing-the-tizen-widget-on-a-tv, install the Tizen widget>>
+
+=== Server Script Setup
+
+. Git clone the link:https://github.com/YOU-i-Labs/Commons[Commons repository] (if you have not already done so)
+. link:https://nodejs.org/en/download/[Install _Node.js_] (if you have not already done so)
+. In a terminal navigate to _Commons/sandbox/tizen_remote_console/server_
+. Run `npm install` to install the dependencies
+. Run `node .` to start the server
+
+IMPORTANT: These are not the logs you are looking for! <<#viewing-the-logs,Read this for seeing the logs.>>
+
+
+=== Viewing the Logs
+
+The logs are written to two files found in the _Commons/sandbox/tizen_remote_console/server/public/logs_ directory.
+
+The two log files are _output.log_ and _error.log_ and you can open them in the text editor of your choice.
+
+NOTE: To see a live stream of the logs while the app is running run `tail -f output.log`
+
+== Engine Documentation
+
+Some more advanced or less common tasks might not be covered in this document. In that case you can check the engine documentation for link:https://developer.youi.tv/latest/Content/Tizen_Intro/H1TizenIntro.htm["Working with Tizen"]
