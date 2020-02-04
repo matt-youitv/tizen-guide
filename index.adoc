@@ -365,7 +365,7 @@ Several changes need to be made to the project's source code in order to get the
 . Copy _Commons/sandbox/tizen_remote_console/client/YiRemoteLogger.js_ into the directory created in the previous step
 . Add the line `list(INSERT YI_USER_TIZEN_JS_FILES 0 "YiRemoteLogger.js")` to the _CMakeLists.txt_ file around line 433
 . Add the line `CYITizenNaClLogPolicy::SetWriteToJavascriptWindow(true);` to the _src/app/LocalNowApp.cpp_ file at the start of the _UserInit(...)_ function
-. <<#build-the-tizen-widget,Re-build the Tizen widget>>
+. <<#building-the-tizen-widget,Re-build the Tizen widget>>
 . Finally <<#installing-the-tizen-widget-on-a-tv, install the Tizen widget>>
 
 === Server Script Setup
